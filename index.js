@@ -1,6 +1,6 @@
 const gameWrapper = document.querySelector(".wrapper");
 const info = document.querySelector(".info-container");
-const turn = document.querySelector(".turn");
+const matchDetails = document.querySelector(".match-details");
 const firstPlayer = document.querySelector("#first_player");
 const secondPlayer = document.querySelector("#second_player");
 
@@ -28,7 +28,6 @@ const winningCombinations = [
 
 function drawBoard() {
   info.style.display = "none";
-
   for (let i = 0; i <= 8; i++) {
     const boardBoxes = document.createElement("button");
     boardBoxes.id = `${i}`;
@@ -45,11 +44,17 @@ function drawBoard() {
       gameState[clickedBoxIndex] = currentPlayer.marker;
       e.target.textContent = currentPlayer.marker;
 
-      if (checkWin()) {
+      const winner = checkWin();
+      if (winner) {
+        winner.forEach((index) => {
+          const winningCell = document.getElementById(index);
+          winningCell.style.backgroundColor = "#A294F9";
+        });
         setTimeout(() => {
-          alert(`${currentPlayer.player} wins!`);
           resetBoard();
-        }, 100);
+        }, 1000);
+
+        matchDetails.textContent = `${currentPlayer.player} wins!`;
         return;
       }
 
@@ -62,11 +67,11 @@ function drawBoard() {
       currentPlayer = currentPlayer === player1 ? player2 : player1;
 
       if (currentPlayer === player1) {
-        turn.textContent = `${currentPlayer.player}'s turn!`;
-        turn.classList.add("turn-item");
+        matchDetails.textContent = `${currentPlayer.player}'s turn!`;
+        matchDetails.classList.add("turn-item");
       } else {
-        turn.textContent = `${currentPlayer.player}'s turn!`;
-        turn.classList.add("turn-item");
+        matchDetails.textContent = `${currentPlayer.player}'s turn!`;
+        matchDetails.classList.add("turn-item");
       }
     });
 
@@ -82,7 +87,8 @@ function checkWin() {
       gameState[a] === gameState[b] &&
       gameState[a] === gameState[c]
     ) {
-      return true;
+      console.log(combination);
+      return combination;
     }
   }
   return false;
@@ -91,6 +97,7 @@ function checkWin() {
 function resetBoard() {
   gameState = ["", "", "", "", "", "", "", "", ""];
   gameWrapper.innerHTML = "";
+  matchDetails.textContent = "";
   currentPlayer = player1;
   drawBoard();
 }
@@ -111,8 +118,8 @@ document.getElementById("play").addEventListener("click", (e) => {
 
   currentPlayer = player1;
 
-  turn.textContent = `${currentPlayer.player}'s turn!`;
-  turn.classList.add("turn-item");
+  matchDetails.textContent = `${currentPlayer.player}'s turn!`;
+  matchDetails.classList.add("turn-item");
 
   drawBoard();
 });

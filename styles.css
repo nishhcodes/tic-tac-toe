@@ -71,7 +71,7 @@ input {
 }
 
 #play {
-  background-color: rgb(18, 111, 232);
+  background-color: #a294f9;
   border: none;
   padding: 1rem 0;
   font-size: 2rem;
@@ -79,6 +79,10 @@ input {
   font-weight: bold;
   margin: 1rem 0;
   border-radius: 0.5rem;
+}
+
+.win-style {
+  background: blue;
 }
 
 @media screen and (max-width: 768px) {
