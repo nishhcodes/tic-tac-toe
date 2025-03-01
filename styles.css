@@ -9,7 +9,7 @@
 }
 
 body {
-  background-color: rgb(6, 25, 39);
+  background-color: #fffdf0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,10 +37,16 @@ h1 {
 }
 
 .board-boxes {
-  border: 1px solid rgb(238, 239, 249);
+  border: 2px solid #727d73;
   border-radius: 8px;
-  font-size: 4rem;
+  font-size: 3.2rem;
   font-weight: bold;
+  background-color: #fff;
+}
+
+.board-boxes:hover {
+  background-color: #aab99a;
+  color: white;
 }
 
 .info-container form {
@@ -58,12 +64,16 @@ input {
   border-radius: 0.5rem;
   border: none;
   text-align: center;
+  border: 2px solid #aab99a;
+  color: #727d73;
+  font-weight: bold;
 }
 
-.turn-item {
+.match-details {
   font-size: 2rem;
-  color: white;
+  color: #727d73;
   margin: 2rem 0;
+  font-weight: bold;
 }
 
 .turn-container {
@@ -71,7 +81,7 @@ input {
 }
 
 #play {
-  background-color: #a294f9;
+  background-color: #aab99a;
   border: none;
   padding: 1rem 0;
   font-size: 2rem;
@@ -81,8 +91,15 @@ input {
   border-radius: 0.5rem;
 }
 
+#play:active {
+  opacity: 0.8;
+}
+
 .win-style {
-  background: blue;
+  background: #aab99a;
+}
+.active {
+  color: #727d73;
 }
 
 @media screen and (max-width: 768px) {

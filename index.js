@@ -28,6 +28,8 @@ const winningCombinations = [
 
 function drawBoard() {
   info.style.display = "none";
+
+  matchDetails.textContent = `${currentPlayer.player} turn!`;
   for (let i = 0; i <= 8; i++) {
     const boardBoxes = document.createElement("button");
     boardBoxes.id = `${i}`;
@@ -48,7 +50,8 @@ function drawBoard() {
       if (winner) {
         winner.forEach((index) => {
           const winningCell = document.getElementById(index);
-          winningCell.style.backgroundColor = "#A294F9";
+          winningCell.classList.add("win-style");
+          winningCell.style.color = "#fff";
         });
         setTimeout(() => {
           resetBoard();
@@ -60,8 +63,9 @@ function drawBoard() {
 
       if (gameState.every((cell) => cell !== "")) {
         setTimeout(() => {
+          matchDetails.textContent = `It's a draw!`;
           resetBoard();
-        }, 100);
+        }, 1000);
       }
 
       currentPlayer = currentPlayer === player1 ? player2 : player1;
@@ -69,9 +73,11 @@ function drawBoard() {
       if (currentPlayer === player1) {
         matchDetails.textContent = `${currentPlayer.player}'s turn!`;
         matchDetails.classList.add("turn-item");
+        e.target.classList.add("active");
       } else {
         matchDetails.textContent = `${currentPlayer.player}'s turn!`;
         matchDetails.classList.add("turn-item");
+        e.target.classList.add("active");
       }
     });
 
@@ -87,7 +93,7 @@ function checkWin() {
       gameState[a] === gameState[b] &&
       gameState[a] === gameState[c]
     ) {
-      console.log(combination);
+      // console.log(combination);
       return combination;
     }
   }
@@ -99,6 +105,7 @@ function resetBoard() {
   gameWrapper.innerHTML = "";
   matchDetails.textContent = "";
   currentPlayer = player1;
+  console.log(currentPlayer);
   drawBoard();
 }
 
