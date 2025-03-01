@@ -10,16 +10,28 @@
   <body>
     <div class="game-board-container">
       <div class="info-container">
+        <div class="score-board">
+          <div>
+            <p id="player1">
+              <p>:</p> <span id="player_one_score">0</span>
+            </p>
+          </div>
+          <div>
+            <p id="player2">
+              <p> :</p> <span id="player_two_score">0</span>
+            </p>  
+          </div>
+        </div>
         <form>
           <input
             type="text"
-            placeholder="First Player Name"
-            id="first_player"
+            placeholder="Player 1 name"
+            id="first_player_name"
           />
           <input
             type="text"
-            placeholder="Second PLayer Name"
-            id="second_player"
+            placeholder="Player 2 name"
+            id="second_player_name"
           />
           <button type="submit" id="play">Play</button>
         </form>

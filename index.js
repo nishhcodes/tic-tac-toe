@@ -1,8 +1,16 @@
+const scoreBoard = document.querySelector(".score-board");
 const gameWrapper = document.querySelector(".wrapper");
 const info = document.querySelector(".info-container");
 const matchDetails = document.querySelector(".match-details");
-const firstPlayer = document.querySelector("#first_player");
-const secondPlayer = document.querySelector("#second_player");
+const firstPlayer = document.querySelector("#first_player_name");
+const secondPlayer = document.querySelector("#second_player_name");
+const playerOne = document.querySelector("#player1");
+const playerTwo = document.querySelector("#player2");
+const firstPlayerScore = document.querySelector("#player_one_score");
+const secondPlayerScore = document.querySelector("#player_two_score");
+
+let playerOneScore = 0;
+let playerTwoScore = 0;
 
 function gamePlayers(player, marker) {
   this.player = player;
@@ -28,8 +36,10 @@ const winningCombinations = [
 
 function drawBoard() {
   info.style.display = "none";
+  document.body.appendChild(scoreBoard);
 
   matchDetails.textContent = `${currentPlayer.player} turn!`;
+
   for (let i = 0; i <= 8; i++) {
     const boardBoxes = document.createElement("button");
     boardBoxes.id = `${i}`;
@@ -54,8 +64,17 @@ function drawBoard() {
           winningCell.style.color = "#fff";
         });
         setTimeout(() => {
+          if (e.target.textContent === "X") {
+            playerOneScore++;
+            firstPlayerScore.textContent = playerOneScore;
+          } else {
+            playerTwoScore++;
+            secondPlayerScore.textContent = playerTwoScore;
+          }
+          console.log(parseInt(playerOneScore));
+          console.log(parseInt(playerTwoScore));
           resetBoard();
-        }, 1000);
+        }, 300);
 
         matchDetails.textContent = `${currentPlayer.player} wins!`;
         return;
@@ -65,7 +84,7 @@ function drawBoard() {
         setTimeout(() => {
           matchDetails.textContent = `It's a draw!`;
           resetBoard();
-        }, 1000);
+        }, 300);
       }
 
       currentPlayer = currentPlayer === player1 ? player2 : player1;
@@ -93,7 +112,6 @@ function checkWin() {
       gameState[a] === gameState[b] &&
       gameState[a] === gameState[c]
     ) {
-      // console.log(combination);
       return combination;
     }
   }
@@ -105,7 +123,6 @@ function resetBoard() {
   gameWrapper.innerHTML = "";
   matchDetails.textContent = "";
   currentPlayer = player1;
-  console.log(currentPlayer);
   drawBoard();
 }
 
@@ -123,7 +140,11 @@ document.getElementById("play").addEventListener("click", (e) => {
   player1 = gamePlayers(player1Name, "X");
   player2 = gamePlayers(player2Name, "O");
 
+  playerOne.textContent = player1Name;
+  playerTwo.textContent = player2Name;
   currentPlayer = player1;
+
+  scoreBoard.style.display = "flex";
 
   matchDetails.textContent = `${currentPlayer.player}'s turn!`;
   matchDetails.classList.add("turn-item");

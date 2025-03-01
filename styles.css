@@ -13,6 +13,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column-reverse;
 }
 h1 {
   color: white;
@@ -25,6 +26,7 @@ h1 {
   flex-direction: column;
   height: 100vh;
   width: 400px;
+  position: relative;
 }
 
 .wrapper {
@@ -71,13 +73,9 @@ input {
 
 .match-details {
   font-size: 2rem;
-  color: #727d73;
+  color: #aab99a;
   margin: 2rem 0;
   font-weight: bold;
-}
-
-.turn-container {
-  height: 3rem;
 }
 
 #play {
@@ -102,7 +100,27 @@ input {
   color: #727d73;
 }
 
-@media screen and (max-width: 768px) {
+.score-board {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  padding: 1rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  background-color: #aab99a;
+  color: #fff;
+  display: none;
+}
+
+.score-board div p {
+  display: inline-flex;
+  gap: 20px;
+}
+
+@media screen and (max-width: 432px) {
   .info-container {
     position: absolute;
     top: 0;
@@ -110,6 +128,6 @@ input {
   }
   .wrapper {
     width: 100%;
-    padding: 1rem;
+    padding: 0.5em;
   }
 }
