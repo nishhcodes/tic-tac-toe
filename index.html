@@ -9,8 +9,23 @@
   </head>
   <body>
     <div class="game-board-container">
-      <h1>Tic-Tac-Toe</h1>
+      <div class="info-container">
+        <form>
+          <input
+            type="text"
+            placeholder="First Player Name"
+            id="first_player"
+          />
+          <input
+            type="text"
+            placeholder="Second PLayer Name"
+            id="second_player"
+          />
+          <button type="submit" id="play">Play</button>
+        </form>
+      </div>
       <div class="wrapper"></div>
+      <div class="match-details"><h2 class="turn"></h2></div>
     </div>
   </body>
 </html>

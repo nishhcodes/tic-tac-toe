@@ -1,4 +1,6 @@
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -8,6 +10,9 @@
 
 body {
   background-color: rgb(6, 25, 39);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 h1 {
   color: white;
@@ -19,7 +24,7 @@ h1 {
   align-items: center;
   flex-direction: column;
   height: 100vh;
-  width: 100vw;
+  width: 400px;
 }
 
 .wrapper {
@@ -36,4 +41,54 @@ h1 {
   border-radius: 8px;
   font-size: 4rem;
   font-weight: bold;
+}
+
+.info-container form {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input {
+  font-size: 1.2rem;
+  padding: 0.5rem 0px;
+  border-radius: 0.5rem;
+  border: none;
+  text-align: center;
+}
+
+.turn-item {
+  font-size: 2rem;
+  color: white;
+  margin: 2rem 0;
+}
+
+.turn-container {
+  height: 3rem;
+}
+
+#play {
+  background-color: rgb(18, 111, 232);
+  border: none;
+  padding: 1rem 0;
+  font-size: 2rem;
+  color: white;
+  font-weight: bold;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .info-container {
+    position: absolute;
+    top: 0;
+    padding: 1rem;
+  }
+  .wrapper {
+    width: 100%;
+    padding: 1rem;
+  }
 }
